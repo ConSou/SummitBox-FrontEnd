@@ -1,41 +1,49 @@
 import React, { Component } from 'react';
-import New from './New';
+import New from './components/New';
+import SignUp from './components/Signup'
+import Info from './components/info'
+import Landing from './components/Landing'
+import { Route } from 'react-router-dom';
 import './App.css';
 
 class App extends Component {
-  constructor(props){
-    super(props)
-
-    this.state = {
-      mountians: []
-    }
-  }
-  componentDidMount(){
-    window.fetch('/v1/mountians')
-    .then(response => response.json())
-    .then(json => {
-      console.log(json.data)
-      this.setState({
-        mountians: json.data
-      })
-    })
-    .catch(error => console.log(error))
-  }
+  // constructor(props){
+  //   super(props)
+  //
+  //   this.state = {
+  //     mountians: []
+  //   }
+  // }
+  // componentDidMount(){
+  //   window.fetch('/v1/mountians')
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     console.log(json.data)
+  //     this.setState({
+  //       mountians: json.data
+  //     })
+  //   })
+  //   .catch(error => console.log(error))
+  // }
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <h2>Welcome to SummitBox</h2>
-          <New />
-        </div>
-          <h1 className="App-intro">
-            {this.state.mountians.map( mountian =>
-              <p key={mountian.id}>{mountian.name}</p>
-            )}
-          </h1>
+          <Route path='/signin' component={New} />
+          <Route exact path='/' component={Landing} />
+          <Route path='/signup' component={SignUp} />
+          <Route path='/info' component={Info} />
       </div>
     );
   }
 }
 
 export default App;
+
+
+//<New />
+
+// <h1 className="App-intro">
+//   {this.state.mountians.map( mountian =>
+//     <p key={mountian.id}>{mountian.name}</p>
+//   )}
+// </h1>
