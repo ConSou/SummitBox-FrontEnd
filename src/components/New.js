@@ -1,9 +1,27 @@
 import React from 'react';
-import { Route, Link } from 'react-router-dom';
-import SignUp from './Signup'
+import { Link } from 'react-router-dom';
+import Profile from './Profile';
 
 
 class New extends React.Component{
+  constructor(props){
+    super(props)
+
+    this.state = {
+      signedIn: false,
+      userEmail: null
+    }
+  }
+
+  componentDidMount(){
+
+      let authentication_token = localStorage.getItem('token')
+      let email = localStorage.getItem('email')
+
+      if(email && authentication_token){
+        this.signInFromStorage()
+      }
+  }
 
   submitForm = (e) => {
     e.preventDefault()
@@ -25,6 +43,7 @@ class New extends React.Component{
     .then(response => response.json())
     .then(json => {
       console.log(json.data)
+      this.setState({ signedIn: true, userEmail: json.data.user.email})
       localStorage.setItem('token', json.data.user.authentication_token);
       localStorage.setItem('email', json.data.user.email);
     })
@@ -33,10 +52,20 @@ class New extends React.Component{
     document.getElementById('sign-in-form').reset();
   }
 
+  signInFromStorage(){
+    this.setState({userEmail: localStorage.getItem('email'), signedIn: true })
+  }
+
   render(){
+    if(this.state.signedIn){
+      return(
+      <Profile
+      userEmail={this.state.userEmail} />
+    )
+    }else{
     return(
       <div className='page-header'>
-      <img class='bg-image' src={require('../images/Signin.jpg')} height='100%' width='100%' />
+      <img className='bg-image' alt='mountian top' src={require('../images/Signin.jpg')} height='100%' width='100%' />
         <header>
             <h2 className='title-dark'>SummitBox</h2>
         </header>
@@ -59,6 +88,7 @@ class New extends React.Component{
           </main>
       </div>
     );
+  }
   }
 }
 

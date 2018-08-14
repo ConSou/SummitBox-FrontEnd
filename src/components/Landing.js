@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
-import New from './New';
-import SignUp from './Signup'
-import Info from './info'
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Landing extends Component {
   render() {
     return (
       <div className='page-header'>
-      <img class='bg-image' src={require('../images/Landing3.jpg')} height='100%' width='100%' />
+      <img className='bg-image' alt='mountian top' src={require('../images/Landing3.jpg')} height='100%' width='100%' />
         <header>
             <h2 className="title-dark">SummitBox</h2>
         </header>

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Info = () => (
   <div className='page-header'>
-  <img class='bg-image' src={require('../images/Landing3.jpg')} height='100%' width='100%' />
+  <img className='bg-image' alt='mountian top' src={require('../images/Landing3.jpg')} height='100%' width='100%' />
     <header>
         <h2 className="title-dark">SummitBox</h2>
     </header>

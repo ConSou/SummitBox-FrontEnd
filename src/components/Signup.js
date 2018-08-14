@@ -4,7 +4,7 @@ class SignUp extends Component {
   render() {
     return (
       <div className='page-header'>
-      <img class='bg-image' src={require('../images/Signup2.jpg')} height='100%' width='100%' />
+      <img className='bg-image' alt='mountian top' src={require('../images/Signup2.jpg')} height='100%' width='100%' />
         <header>
             <h2 className='title'>Welcome.</h2>
         </header>
