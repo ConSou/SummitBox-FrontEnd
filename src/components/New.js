@@ -1,6 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import Profile from './Profile';
+import { Link, Redirect } from 'react-router-dom';
 
 
 class New extends React.Component{
@@ -58,10 +57,12 @@ class New extends React.Component{
 
   render(){
     if(this.state.signedIn){
-      return(
-      <Profile
-      userEmail={this.state.userEmail} />
-    )
+      return (
+            <Redirect to = {{
+                pathname: '/profile',
+                state: { userEmail: this.state.userEmail, signedIn: this.state.signedIn }
+            }}/> )
+        //return <Redirect to='/profile' />
     }else{
     return(
       <div className='page-header'>
