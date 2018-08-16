@@ -8,7 +8,7 @@ class New extends React.Component{
 
     this.state = {
       signedIn: false,
-      userEmail: null
+      userId: 0
     }
   }
 
@@ -42,9 +42,10 @@ class New extends React.Component{
     .then(response => response.json())
     .then(json => {
       console.log(json.data)
-      this.setState({ signedIn: true, userEmail: json.data.user.email})
       localStorage.setItem('token', json.data.user.authentication_token);
       localStorage.setItem('email', json.data.user.email);
+      localStorage.setItem('id', json.data.user.id);
+      this.setState({ signedIn: true, userId: json.data.user.id})
     })
     .catch(error => console.log(error))
 
@@ -52,7 +53,7 @@ class New extends React.Component{
   }
 
   signInFromStorage(){
-    this.setState({userEmail: localStorage.getItem('email'), signedIn: true })
+    this.setState({ signedIn: true })
   }
 
   render(){
@@ -60,7 +61,7 @@ class New extends React.Component{
       return (
             <Redirect to = {{
                 pathname: '/profile',
-                state: { userEmail: this.state.userEmail, signedIn: this.state.signedIn }
+                state: { signedIn: this.state.signedIn, userId: this.state.userId }
             }}/> )
         //return <Redirect to='/profile' />
     }else{

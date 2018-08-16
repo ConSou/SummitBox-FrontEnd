@@ -8,6 +8,8 @@ class SignUp extends Component {
     let email = this.email.value
     let password = this.password.value
     let passwordConfirmation = this.passwordConfirm.value
+    let firstName = this.firstName.value
+    let lastName = this.lastName.value
 
     window.fetch('v1/users/', {
       method: 'POST',
@@ -19,7 +21,9 @@ class SignUp extends Component {
         user: {
         email: email,
         password: password,
-        password_confirmation: passwordConfirmation
+        password_confirmation: passwordConfirmation,
+        first_name: firstName,
+        last_name: lastName
         }
       })
     })
@@ -39,6 +43,8 @@ class SignUp extends Component {
         <main className='nav'>
         <div className='form-group'>
         <form id='sign-up-form' onSubmit={this.submitForm}>
+            <input className ='form-control' type='name' ref={node => {this.firstName = node;}} placeholder='First Name' />
+            <input className ='form-control' type='name' ref={node => {this.lastName = node;}} placeholder='Last Name' />
             <input className ='form-control' type='email' ref={node => {this.email = node;}} placeholder='Email' />
             <input className ='form-control' type='password' ref={node => {this.password = node;}} placeholder='Password' />
             <input className ='form-control' type='password' ref={node => {this.passwordConfirm = node;}} placeholder='Confirm Password' />
@@ -54,6 +60,3 @@ class SignUp extends Component {
 }
 
 export default SignUp;
-
-// <input className ='form-control' type='name' ref={node => {this.firstName = node;}} placeholder='First Name' />
-// <input className ='form-control' type='name' ref={node => {this.lastName = node;}} placeholder='Last Name' />

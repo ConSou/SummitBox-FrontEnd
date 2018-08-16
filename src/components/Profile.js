@@ -6,7 +6,9 @@ class Profile extends Component {
     super(props)
 
     this.state = {
-      signedIn: this.props.location.state.signedIn
+      signedIn: false,
+      userFirstName: null,
+      userLastName: null,
     }
     this.signOut = this.signOut.bind(this);
   //
@@ -30,6 +32,28 @@ class Profile extends Component {
   //   })
   //   .catch(error => console.log(error))
   }
+
+  componentWillMount(){
+    this.setState({signedIn: true})
+    let id = localStorage.getItem('id');
+    if(id){
+    window.fetch(`v1/users/${id}`, {
+      method: 'GET',
+      headers: {
+        'X-User-Token': localStorage.getItem('token'),
+        'X-User-Email': localStorage.getItem('email')
+      }})
+      .then(response => response.json())
+      .then(json => {
+          console.log(json.data)
+          this.setState({ userFirstName: json.data.user.first_name, userLastName: json.data.user.last_name})
+        })
+      }else{
+        this.setState({signedIn: false})
+      }
+    }
+
+
   signOut(){
 
     window.fetch('v1/sessions/', {
@@ -43,21 +67,21 @@ class Profile extends Component {
 
     localStorage.removeItem('email')
     localStorage.removeItem('token')
+    localStorage.removeItem('id')
     this.setState({ signedIn: false })
   }
 
   render() {
     if(!this.state.signedIn){
       return (
-        <Redirect to='/' />
+        <Redirect to='/signin' />
       )
     }else{
     return (
       <div className="App">
           <h1> Hello </h1>
-          <h1> {this.props.location.state.signedIn} </h1>
+          <h1> {this.state.userFirstName} {this.state.userLastName}  </h1>
           <p>
-            {this.props.location.state.userEmail}
             <button onClick={this.signOut}>
               Sign Out
             </button>
