@@ -1,6 +1,34 @@
 import React, { Component } from 'react';
 
 class SignUp extends Component {
+
+  submitForm = (e) => {
+    e.preventDefault()
+
+    let email = this.email.value
+    let password = this.password.value
+    let passwordConfirmation = this.passwordConfirm.value
+
+    window.fetch('v1/users/', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        user: {
+        email: email,
+        password: password,
+        password_confirmation: passwordConfirmation
+        }
+      })
+    })
+    .then(response => response.json())
+    .then(json =>
+    console.log(json.data)
+  )
+  }
+
   render() {
     return (
       <div className='page-header'>
@@ -10,9 +38,7 @@ class SignUp extends Component {
         </header>
         <main className='nav'>
         <div className='form-group'>
-        <form id='sign-up-form'>
-            <input className ='form-control' type='name' ref={node => {this.firstName = node;}} placeholder='First Name' />
-            <input className ='form-control' type='name' ref={node => {this.lastName = node;}} placeholder='Last Name' />
+        <form id='sign-up-form' onSubmit={this.submitForm}>
             <input className ='form-control' type='email' ref={node => {this.email = node;}} placeholder='Email' />
             <input className ='form-control' type='password' ref={node => {this.password = node;}} placeholder='Password' />
             <input className ='form-control' type='password' ref={node => {this.passwordConfirm = node;}} placeholder='Confirm Password' />
@@ -28,3 +54,6 @@ class SignUp extends Component {
 }
 
 export default SignUp;
+
+// <input className ='form-control' type='name' ref={node => {this.firstName = node;}} placeholder='First Name' />
+// <input className ='form-control' type='name' ref={node => {this.lastName = node;}} placeholder='Last Name' />
