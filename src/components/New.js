@@ -60,8 +60,7 @@ class New extends React.Component{
     if(this.state.signedIn){
       return (
             <Redirect to = {{
-                pathname: '/profile',
-                state: { signedIn: this.state.signedIn, userId: this.state.userId }
+                pathname: '/profile'
             }}/> )
         //return <Redirect to='/profile' />
     }else{

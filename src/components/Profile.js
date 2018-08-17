@@ -71,6 +71,10 @@ class Profile extends Component {
     this.setState({ signedIn: false })
   }
 
+  fileSelectedHandler(e){
+    console.log(e.target.files[0])
+  }
+
   render() {
     if(!this.state.signedIn){
       return (
@@ -86,7 +90,7 @@ class Profile extends Component {
               Sign Out
             </button>
           </p>
-          <input type='file' />
+          <input type='file' onChange={this.fileSelectedHandler}/>
       </div>
     );
   }
