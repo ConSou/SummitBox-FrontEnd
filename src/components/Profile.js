@@ -9,6 +9,7 @@ class Profile extends Component {
       signedIn: false,
       userFirstName: null,
       userLastName: null,
+      profilePic: null
     }
     this.signOut = this.signOut.bind(this);
   //
@@ -71,8 +72,13 @@ class Profile extends Component {
     this.setState({ signedIn: false })
   }
 
-  fileSelectedHandler(e){
+  fileSelectedHandler = (e) => {
     console.log(e.target.files[0])
+    this.setState({ profilePic: e.target.files[0]})
+  }
+
+  uploader = (e) => {
+    
   }
 
   render() {

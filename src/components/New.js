@@ -62,7 +62,6 @@ class New extends React.Component{
             <Redirect to = {{
                 pathname: '/profile'
             }}/> )
-        //return <Redirect to='/profile' />
     }else{
     return(
       <div className='page-header'>
