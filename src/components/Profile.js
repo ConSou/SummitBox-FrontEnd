@@ -78,7 +78,22 @@ class Profile extends Component {
   }
 
   uploader = (e) => {
-    
+    console.log('Working Upload')
+    console.log(this.state.profilePic)
+
+    let id = localStorage.getItem('id')
+    window.fetch(`/v1/users/${id}`, {
+      method: 'PATCH',
+      headers: {
+        'X-User-Token': localStorage.getItem('token'),
+        'X-User-Email': localStorage.getItem('email')
+      },
+      body: JSON.stringify({
+        image: this.state.profilePic
+      })
+    })
+    .then(response => response.json())
+    .then(json => console.log(json.data))
   }
 
   render() {
@@ -96,6 +111,9 @@ class Profile extends Component {
             </button>
           </p>
           <input type='file' onChange={this.fileSelectedHandler}/>
+          <button onClick={this.uploader}>
+            Upload Image
+          </button>
       </div>
     );
   }
