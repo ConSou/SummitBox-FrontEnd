@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
+  constructor(props){
+    super(props)
+
+    this.state = {
+      redirected: false
+    }
+  }
 
   submitForm = (e) => {
     e.preventDefault()
@@ -31,9 +39,15 @@ class SignUp extends Component {
     .then(json =>
     console.log(json.data)
   )
+  this.setState({redirected: true})
   }
 
   render() {
+    if(this.state.redirected){
+      return (
+        <Redirect to="/signin" />
+      )
+    }else{
     return (
       <div className='page-header'>
       <img className='bg-image' alt='mountian top' src={require('../images/Signup2.jpg')} height='100%' width='100%' />
@@ -57,6 +71,7 @@ class SignUp extends Component {
       </div>
     );
   }
+}
 }
 
 export default SignUp;

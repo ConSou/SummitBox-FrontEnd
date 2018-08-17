@@ -83,8 +83,7 @@ class Profile extends Component {
     }else{
     return (
       <div className="App">
-          <h1> Hello </h1>
-          <h1> {this.state.userFirstName} {this.state.userLastName}  </h1>
+          <h2> {this.state.userFirstName} {this.state.userLastName}  </h2>
           <p>
             <button onClick={this.signOut}>
               Sign Out
