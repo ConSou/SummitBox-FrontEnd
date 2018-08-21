@@ -93,7 +93,7 @@ class Profile extends Component {
       })
     })
     .then(response => response.json())
-    .then(json => console.log(json.data))
+    .then(json => console.log(json.data.user.image))
   }
 
   render() {
