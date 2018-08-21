@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import NavBar from './navbar';
+
 
 class Profile extends Component {
   constructor(props){
@@ -114,6 +116,9 @@ class Profile extends Component {
           <button onClick={this.uploader}>
             Upload Image
           </button>
+        <div>
+          < NavBar />
+        </div>
       </div>
     );
   }

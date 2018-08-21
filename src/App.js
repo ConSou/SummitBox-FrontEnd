@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import New from './components/New';
-import SignUp from './components/Signup'
-import Info from './components/info'
-import Profile from './components/Profile'
-import Landing from './components/Landing'
+import SignUp from './components/Signup';
+import Info from './components/info';
+import Profile from './components/Profile';
+import Landing from './components/Landing';
+import Search from './components/search';
+import Plan from './components/plan';
 import { Route } from 'react-router-dom';
 import './App.css';
 
@@ -34,6 +36,8 @@ class App extends Component {
           <Route path='/signup' component={SignUp} />
           <Route path='/info' component={Info} />
           <Route path='/profile' component={Profile} />
+          <Route path='/search' component={Search} />
+          <Route path='/plan' component={Plan} />
       </div>
     );
   }

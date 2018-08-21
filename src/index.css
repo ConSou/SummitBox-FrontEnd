@@ -76,3 +76,12 @@ bg-image {
 .form-group {
   width: 300px;
 }
+
+.navie {
+  margin-top: 300px;
+  border: 1px solid black;
+  margin-right: 100px;
+  margin-left: 100px;
+  border-radius: 25%;
+  text-align: center;
+}
