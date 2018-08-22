@@ -37,6 +37,24 @@ onSearch = (e) => {
 
 }
 
+addPlan = (e) => {
+  console.log(this.state.searchResult[0].id)
+
+  window.fetch('v1/plans/', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-User-Token': localStorage.getItem('token'),
+      'X-User-Email': localStorage.getItem('email')
+    },
+    body: JSON.stringify({
+      mountian_id: this.state.searchResult[0].id
+    })
+  })
+    .then(response => response.json())
+    .then(json => console.log(json.data))
+}
+
   render() {
     return (
       <div className="searchView">
@@ -66,7 +84,7 @@ onSearch = (e) => {
                 <p>
                 {this.state.searchResult[0].image}
                 </p>
-                <button>
+                <button onClick={this.addPlan}>
                   Add to Planning
                 </button>
              </div> : "Search by Mountian Name Above!"}
