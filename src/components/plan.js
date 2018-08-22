@@ -5,7 +5,7 @@ class Plan extends Component {
   render() {
     return (
       <div>
-        Plan!
+        Plan Expiditions
         < NavBar />
       </div>
     );

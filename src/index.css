@@ -85,3 +85,14 @@ bg-image {
   border-radius: 25%;
   text-align: center;
 }
+
+.resultBox {
+  border: 1px solid black;
+  margin-left: 100px;
+  margin-right: 100px;
+  margin-bottom: -100px;
+}
+
+.searchView {
+  margin-top: 20px;
+}

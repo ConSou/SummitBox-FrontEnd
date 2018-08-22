@@ -39,32 +39,37 @@ onSearch = (e) => {
 
   render() {
     return (
-      <div>
-        Search!
-        <div>
+      <div className="searchView">
+        <h1> Explore. </h1>
           <form id="searcher" onSubmit={this.onSearch}>
-            <input className='form-group' type='search' ref={node => {this.mountain = node}}placeholder='Search SummitBoxes by Peak Name' />
+            <input className='form-group' type='search' ref={node => {this.mountain = node}}placeholder='Search SummitBoxes' />
             <button> Search </button>
           </form>
-        </div>
         <div>
-          {this.state.searchResult ? <div>
-            <h1>
-             {this.state.searchResult[0].name}
-             </h1>
-             <p>
-              {this.state.searchResult[0].description}
-              </p>
-              <p>
-              Latitude: {this.state.searchResult[0].lat}
-              </p>
-              <p>
-              Longitude: {this.state.searchResult[0].lng}
-              </p>
-              <p>
-              Elevation: {this.state.searchResult[0].elevation}
-              </p>
-             </div> : "Null"}
+          {this.state.searchResult ?
+            <div className="resultBox">
+              <h1>
+               {this.state.searchResult[0].name}
+               </h1>
+               <p>
+                {this.state.searchResult[0].description}
+                </p>
+                <p>
+                Latitude: {this.state.searchResult[0].lat}
+                </p>
+                <p>
+                Longitude: {this.state.searchResult[0].lng}
+                </p>
+                <p>
+                Elevation: {this.state.searchResult[0].elevation}
+                </p>
+                <p>
+                {this.state.searchResult[0].image}
+                </p>
+                <button>
+                  Add to Planning
+                </button>
+             </div> : "Search by Mountian Name Above!"}
         </div>
         < NavBar />
       </div>
@@ -73,3 +78,4 @@ onSearch = (e) => {
 }
 
 export default Search;
+//<img src={require(`${this.state.searchResult[0].image}`)} />
