@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from './navbar';
 
 class Search extends Component {
@@ -87,6 +88,10 @@ addPlan = (e) => {
                 <button onClick={this.addPlan}>
                   Add to Planning
                 </button>
+                <Link to={{
+                  pathname: '/nowclimbing',
+                  state: {mountian: this.state.searchResult[0]}
+                }}> Start Climb </Link>
              </div> : "Search by Mountian Name Above!"}
         </div>
         < NavBar />
