@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import NavBar from './navbar';
 
 class NowClimbing extends Component {
@@ -54,7 +55,7 @@ class NowClimbing extends Component {
         </button>
         <p> {this.state.yourLocation ? this.state.yourLocation.coords.latitude : ""} </p>
         <p> {this.state.yourLocation ? this.state.yourLocation.coords.longitude : ""} </p>
-        <h1> {this.state.boxAccess ? "You Have Reached the SummitBox" : "Box Access Denied"} {} </h1>
+        <h1> {this.state.boxAccess ? <Link to='/'>You Have Reached the SummitBox </Link> : ""} </h1>
         <NavBar />
       </div>
     );
