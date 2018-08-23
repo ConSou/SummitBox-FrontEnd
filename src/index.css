@@ -96,3 +96,7 @@ bg-image {
 .searchView {
   margin-top: 20px;
 }
+
+.mountianImg {
+  border: 4px solid lightgrey;
+}

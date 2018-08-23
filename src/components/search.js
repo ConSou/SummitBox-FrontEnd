@@ -59,7 +59,7 @@ addPlan = (e) => {
   render() {
     return (
       <div className="searchView">
-        <h1> Explore. </h1>
+        <h1 className="jumbotron"> Explore. </h1>
           <form id="searcher" onSubmit={this.onSearch}>
             <input className='form-group' type='search' ref={node => {this.mountain = node}}placeholder='Search SummitBoxes' />
             <button> Search </button>
@@ -67,27 +67,22 @@ addPlan = (e) => {
         <div>
           {this.state.searchResult ?
             <div className="resultBox">
-              <h1>
+              <h3>
                {this.state.searchResult[0].name}
-               </h1>
+               </h3>
+               <div>
+                 <img className='mountianImg' alt='mountian top' src={require(`../images/mountianImg/${this.state.searchResult[0].image}`)} height='300px' width='300px'/>
+               </div>
                <p>
-                {this.state.searchResult[0].description}
-                </p>
-                <p>
-                Latitude: {this.state.searchResult[0].lat}
-                </p>
-                <p>
-                Longitude: {this.state.searchResult[0].lng}
-                </p>
-                <p>
+                  Latitude: {this.state.searchResult[0].lat}
+                  </p>
+                  <p>
+                  Longitude: {this.state.searchResult[0].lng}
+                 </p>
+               <p>
                 Elevation: {this.state.searchResult[0].elevation}
                 </p>
-                <p>
-                {this.state.searchResult[0].image}
-                </p>
-                <button onClick={this.addPlan}>
-                  Add to Planning
-                </button>
+                <p onClick={this.addPlan}> Add to Planning </p>
                 <Link to={{
                   pathname: '/nowclimbing',
                   state: {mountian: this.state.searchResult[0]}
@@ -101,4 +96,29 @@ addPlan = (e) => {
 }
 
 export default Search;
-//<img src={require(`${this.state.searchResult[0].image}`)} />
+
+// <div>
+//   {this.state.searchResult ?
+//     <div className="resultBox">
+//       <h3>
+//        {this.state.searchResult[0].name}
+//        </h3>
+//         <p>
+//         Latitude: {this.state.searchResult[0].lat}
+//         </p>
+//         <p>
+//         Longitude: {this.state.searchResult[0].lng}
+//         </p>
+//         <p>
+//         Elevation: {this.state.searchResult[0].elevation}
+//         </p>
+//         <div>
+//           <img alt='mountian top' src={require(`../images/mountianImg/${this.state.searchResult[0].image}`)} height='200px' width='200px'/>
+//         </div>
+//         <p onClick={this.addPlan}> Add </p>
+//         <Link to={{
+//           pathname: '/nowclimbing',
+//           state: {mountian: this.state.searchResult[0]}
+//         }}> Start Climb </Link>
+//      </div> : "Search by Mountian Name Above!"}
+// </div>
