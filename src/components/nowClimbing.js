@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Timer from './timer'
 import NavBar from './navbar';
 
 class NowClimbing extends Component {
@@ -8,7 +9,8 @@ class NowClimbing extends Component {
 
     this.state = {
       yourLocal: null,
-      boxAccess: false
+      boxAccess: false,
+      summitConfirm: false
     }
   }
 
@@ -56,6 +58,7 @@ class NowClimbing extends Component {
         <p> {this.state.yourLocation ? this.state.yourLocation.coords.latitude : ""} </p>
         <p> {this.state.yourLocation ? this.state.yourLocation.coords.longitude : ""} </p>
         <h1> {this.state.boxAccess ? <Link to='/'>You Have Reached the SummitBox </Link> : ""} </h1>
+        <Timer boxAccess={this.state.summitConfirm}/>
         <NavBar />
       </div>
     );
