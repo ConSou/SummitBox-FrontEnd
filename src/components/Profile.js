@@ -11,7 +11,12 @@ class Profile extends Component {
       signedIn: false,
       userFirstName: null,
       userLastName: null,
-      profilePic: null
+      userCity: null,
+      userState: null,
+      userCountry: null,
+      userBio: null,
+      profilePic: null,
+      displayPic: null
     }
     this.signOut = this.signOut.bind(this);
   //
@@ -49,7 +54,15 @@ class Profile extends Component {
       .then(response => response.json())
       .then(json => {
           console.log(json.data)
-          this.setState({ userFirstName: json.data.user.first_name, userLastName: json.data.user.last_name})
+          this.setState({
+            userFirstName: json.data.user.first_name,
+            userLastName: json.data.user.last_name,
+            userCity: json.data.user.city,
+            userState: json.data.user.state,
+            userCountry: json.data.user.country,
+            userBio: json.data.user.bio,
+            displayPic: json.data.user.imgurl
+          })
         })
       }else{
         this.setState({signedIn: false})
@@ -81,18 +94,21 @@ class Profile extends Component {
 
   uploader = (e) => {
     console.log('Working Upload')
-    console.log(this.state.profilePic)
+
+    const image = this.state.profilePic
+    console.log(image)
+
+    const formData = new FormData()
+    formData.append('image', image)
 
     let id = localStorage.getItem('id')
     window.fetch(`/v1/users/${id}`, {
-      method: 'PATCH',
+      method: 'PUT',
       headers: {
         'X-User-Token': localStorage.getItem('token'),
         'X-User-Email': localStorage.getItem('email')
       },
-      body: JSON.stringify({
-        image: this.state.profilePic
-      })
+      body: formData
     })
     .then(response => response.json())
     .then(json => console.log(json.data.user.image))
@@ -106,16 +122,32 @@ class Profile extends Component {
     }else{
     return (
       <div className="App">
-          <h2> {this.state.userFirstName} {this.state.userLastName}  </h2>
-          <p>
-            <button onClick={this.signOut}>
-              Sign Out
-            </button>
-          </p>
+      <div>
+          <h1>
+            {this.state.userFirstName} {this.state.userLastName}
+          </h1>
+          <p> {this.state.userCity} | {this.state.userState} | {this.state.userCountry} </p>
+          <img alt="country flag" src="https://www.countryflags.io/us/flat/64.png" />
+      </div>
+          {
+            this.state.displayPic ?
+          <div>
+            <img alt="profile" src={this.state.displayPic} height='100px' width='100px' />
+          </div>
+         :
+         <div>
           <input type='file' onChange={this.fileSelectedHandler}/>
           <button onClick={this.uploader}>
             Upload Image
           </button>
+          </div>
+        }
+        <div>
+          {this.state.userBio}
+        </div>
+        <button onClick={this.signOut}>
+          Sign Out
+        </button>
         <div>
           < NavBar />
         </div>
