@@ -100,3 +100,12 @@ bg-image {
 .mountianImg {
   border: 4px solid lightgrey;
 }
+
+.boxPosts{
+  border: 1px solid black;
+  margin: 50px 150px 50px 150px;
+}
+
+.planningButton {
+  color: #007bff;
+}

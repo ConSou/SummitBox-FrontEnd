@@ -8,7 +8,8 @@ class Search extends Component {
 
     this.state = {
       searchResult: null,
-      serverRes: 0
+      serverRes: 0,
+      isPlanned: false
     }
 
   }
@@ -54,6 +55,7 @@ addPlan = (e) => {
   })
     .then(response => response.json())
     .then(json => console.log(json.data))
+    this.setState({ isPlanned: true })
 }
 
   render() {
@@ -82,7 +84,7 @@ addPlan = (e) => {
                <p>
                 Elevation: {this.state.searchResult[0].elevation}
                 </p>
-                <p onClick={this.addPlan}> Add to Planning </p>
+                <p className="planningButton" onClick={this.addPlan}>{this.state.isPlanned ? "Added!" : "Add to Planning" }</p>
                 <Link to={{
                   pathname: '/nowclimbing',
                   state: {mountian: this.state.searchResult[0]}
