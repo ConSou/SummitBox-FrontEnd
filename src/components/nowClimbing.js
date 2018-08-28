@@ -28,11 +28,15 @@ class NowClimbing extends Component {
     }
 
   summitSuccess(){
-    const yourLat = Math.round(this.state.yourLocation.coords.latitude * 1000) / 1000
-    const yourLng = Math.round(this.state.yourLocation.coords.longitude * 1000) / 1000
+    const yourLat = Math.round(this.state.yourLocation.coords.latitude * 10) / 10
+    const yourLng = Math.round(this.state.yourLocation.coords.longitude * 10) / 10
+    console.log(yourLat)
+    console.log(yourLng)
 
-    const mtLat = Math.round(this.props.location.state.mountian.lat * 1000) / 1000
-    const mtLng = Math.round(this.props.location.state.mountian.lng * 1000) / 1000
+    const mtLat = Math.round(this.props.location.state.mountian.lat * 10) / 10
+    const mtLng = Math.round(this.props.location.state.mountian.lng * 10) / 10
+    console.log(mtLat)
+    console.log(mtLng)
 
     if(yourLat === mtLat && yourLng === mtLng){
       this.setState({boxAccess: true})
@@ -57,7 +61,10 @@ class NowClimbing extends Component {
         </button>
         <p> {this.state.yourLocation ? this.state.yourLocation.coords.latitude : ""} </p>
         <p> {this.state.yourLocation ? this.state.yourLocation.coords.longitude : ""} </p>
-        <h1> {this.state.boxAccess ? <Link to='/'>You Have Reached the SummitBox </Link> : ""} </h1>
+        <h1> {this.state.boxAccess ? <Link to={{
+          pathname: '/boxaccess',
+          state: {boxId: this.props.location.state.mountian.id}
+        }}>You Have Reached the SummitBox </Link> : ""} </h1>
         <Timer boxAccess={this.state.summitConfirm}/>
         <NavBar />
       </div>

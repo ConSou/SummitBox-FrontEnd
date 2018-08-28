@@ -6,6 +6,7 @@ import Profile from './components/Profile';
 import Landing from './components/Landing';
 import Search from './components/search';
 import Plan from './components/plan';
+import Bin from './components/bin';
 import NowClimbing from './components/nowClimbing';
 import { Route } from 'react-router-dom';
 import './App.css';
@@ -40,6 +41,7 @@ class App extends Component {
           <Route path='/search' component={Search} />
           <Route path='/plan' component={Plan} />
           <Route path='/nowclimbing' component={NowClimbing} />
+          <Route path='/boxaccess' component={Bin} />
       </div>
     );
   }
