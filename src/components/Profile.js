@@ -89,32 +89,32 @@ class Profile extends Component {
     this.setState({ signedIn: false })
   }
 
-  fileSelectedHandler = (e) => {
-    console.log(e.target.files[0])
-    this.setState({ profilePic: e.target.files[0]})
-  }
+  // fileSelectedHandler = (e) => {
+  //   console.log(e.target.files[0])
+  //   this.setState({ profilePic: e.target.files[0]})
+  // }
 
-  uploader = (e) => {
-    console.log('Working Upload')
-
-    const image = this.state.profilePic
-    console.log(image)
-
-    const formData = new FormData()
-    formData.append('image', image)
-
-    let id = localStorage.getItem('id')
-    window.fetch(`/v1/users/${id}`, {
-      method: 'PUT',
-      headers: {
-        'X-User-Token': localStorage.getItem('token'),
-        'X-User-Email': localStorage.getItem('email')
-      },
-      body: formData
-    })
-    .then(response => response.json())
-    .then(json => console.log(json.data.user.image))
-  }
+  // uploader = (e) => {
+  //   console.log('Working Upload')
+  //
+  //   const image = this.state.profilePic
+  //   console.log(image)
+  //
+  //   const formData = new FormData()
+  //   formData.append('image', image)
+  //
+  //   let id = localStorage.getItem('id')
+  //   window.fetch(`/v1/users/${id}`, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'X-User-Token': localStorage.getItem('token'),
+  //       'X-User-Email': localStorage.getItem('email')
+  //     },
+  //     body: formData
+  //   })
+  //   .then(response => response.json())
+  //   .then(json => console.log(json.data.user.image))
+  // }
 
   onEdit = () => {
     console.log("hello")
@@ -148,19 +148,9 @@ class Profile extends Component {
           <p> {this.state.userCity} | {this.state.userState} | {this.state.userCountry} </p>
           <img alt="country flag" src="https://www.countryflags.io/us/flat/64.png" />
       </div>
-          {
-            this.state.displayPic ?
           <div>
             <img alt="profile" src={this.state.displayPic} height='100px' width='100px' />
           </div>
-         :
-         <div>
-          <input type='file' onChange={this.fileSelectedHandler}/>
-          <button onClick={this.uploader}>
-            Upload Image
-          </button>
-          </div>
-        }
         <div>
           {this.state.userBio}
         </div>

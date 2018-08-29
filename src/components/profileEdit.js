@@ -34,8 +34,32 @@ submitForm = (e) => {
     })
   })
   .then(response => console.log(response))
-  this.props.history.push('/profile');
   //.then(json => console.log(json.data.user))
+  this.props.history.push('/profile');
+}
+
+fileSelectedHandler = (e) => {
+  console.log(e.target.files[0])
+  var pic = e.target.files[0]
+
+
+  const image = new FormData()
+  image.append('image', pic)
+  console.log(image)
+
+  let id = localStorage.getItem('id')
+  window.fetch(`/v1/users/${id}`, {
+    method: 'PUT',
+    headers: {
+      //'Content-Type': 'application/json',
+      'X-User-Token': localStorage.getItem('token'),
+      'X-User-Email': localStorage.getItem('email')
+    },
+    body: image
+  })
+  .then(response => response.json())
+  .then(json => console.log(json.data.user.image))
+
 }
 
   render() {
@@ -69,7 +93,7 @@ submitForm = (e) => {
               </label>
               <label>
                 Profile Picture:
-                <input className='form-control' type='file' />
+                <input className='form-control' type='file' onChange={this.fileSelectedHandler} />
               </label>
               <button>
                 Save Changes
@@ -82,3 +106,25 @@ submitForm = (e) => {
 }
 
 export default withRouter(ProfileEdit);
+
+// fileSelectedHandler = (e) => {
+//   console.log(e.target.files[0])
+//   const image = e.target.files[0]
+//   console.log(image)
+//
+//   const formData = new FormData()
+//   formData.append('image', image)
+//
+//   let id = localStorage.getItem('id')
+//   window.fetch(`/v1/users/${id}`, {
+//     method: 'PUT',
+//     headers: {
+//       'X-User-Token': localStorage.getItem('token'),
+//       'X-User-Email': localStorage.getItem('email')
+//     },
+//     body: formData
+//   })
+//   .then(response => response.json())
+//   .then(json => console.log(json.data.user.image))
+//
+// }
