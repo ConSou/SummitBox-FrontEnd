@@ -8,6 +8,7 @@ import Search from './components/search';
 import Plan from './components/plan';
 import Bin from './components/bin';
 import NowClimbing from './components/nowClimbing';
+import ProfileEdit from './components/profileEdit';
 import { Route } from 'react-router-dom';
 import './App.css';
 
@@ -42,6 +43,7 @@ class App extends Component {
           <Route path='/plan' component={Plan} />
           <Route path='/nowclimbing' component={NowClimbing} />
           <Route path='/boxaccess' component={Bin} />
+          <Route path='/edit' component={ProfileEdit} />
       </div>
     );
   }

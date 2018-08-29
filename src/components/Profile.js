@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import NavBar from './navbar';
 
 
@@ -18,6 +19,7 @@ class Profile extends Component {
       profilePic: null,
       displayPic: null
     }
+
     this.signOut = this.signOut.bind(this);
   //
   //   this.state = {
@@ -114,6 +116,10 @@ class Profile extends Component {
     .then(json => console.log(json.data.user.image))
   }
 
+  onEdit = () => {
+    console.log("hello")
+  }
+
   render() {
     if(!this.state.signedIn){
       return (
@@ -125,6 +131,19 @@ class Profile extends Component {
       <div>
           <h1>
             {this.state.userFirstName} {this.state.userLastName}
+            <Link to={{
+              pathname: '/edit',
+              state: {
+                userFirstName: this.state.userFirstName,
+                userLastName: this.state.userLastName,
+                userCity: this.state.userCity,
+                userState: this.state.userState,
+                userCountry: this.state.userCountry,
+                userBio: this.state.userBio,
+                profilePic: this.state.profilePic,
+                displayPic: this.state.displayPic
+              }
+            }}> Edit </Link>
           </h1>
           <p> {this.state.userCity} | {this.state.userState} | {this.state.userCountry} </p>
           <img alt="country flag" src="https://www.countryflags.io/us/flat/64.png" />
