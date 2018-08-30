@@ -9,6 +9,7 @@ import Plan from './components/plan';
 import Bin from './components/bin';
 import NowClimbing from './components/nowClimbing';
 import ProfileEdit from './components/profileEdit';
+import Entry from './components/entry';
 import { Route } from 'react-router-dom';
 import './App.css';
 
@@ -44,6 +45,7 @@ class App extends Component {
           <Route path='/nowclimbing' component={NowClimbing} />
           <Route path='/boxaccess' component={Bin} />
           <Route path='/edit' component={ProfileEdit} />
+          <Route path='/entry' component={Entry} />
       </div>
     );
   }

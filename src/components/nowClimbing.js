@@ -20,6 +20,7 @@ class NowClimbing extends Component {
 
 
   confirmSummit(){
+    console.log("Engaged")
       navigator.geolocation.getCurrentPosition((position) => {
         this.setState({yourLocation: position})
         console.log(this.state.yourLocation)

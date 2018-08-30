@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Bin extends Component {
   constructor(props){
@@ -23,7 +24,7 @@ class Bin extends Component {
       this.setState({ bin: json.data[0] })
     })
 
-    window.fetch(`/v1/entrys/${this.props.location.state.boxId}`, {
+    window.fetch(`/v1/entries/${this.props.location.state.boxId}`, {
       method: 'GET',
       headers: {
         'X-User-Token': localStorage.getItem('token'),
@@ -51,6 +52,16 @@ class Bin extends Component {
             }
           )}
         </div>
+        <Link to="/entry">
+
+        </Link>
+        <Link to={{
+          pathname: '/entry',
+          state: {
+            bin_id: this.state.bin.id,
+            bin_name: this.state.bin.name
+          }
+        }}> Create Box Entry </Link>
       </div>
     );
   }
